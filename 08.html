@@ -1,0 +1,374 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Starting a Busybox</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="01.html"><strong aria-hidden="true">1.</strong> Why You Need Docker?</a></li><li class="chapter-item expanded "><a href="02.html"><strong aria-hidden="true">2.</strong> How Docker Works?</a></li><li class="chapter-item expanded "><a href="03.html"><strong aria-hidden="true">3.</strong> Installing Docker on Linux</a></li><li class="chapter-item expanded "><a href="04.html"><strong aria-hidden="true">4.</strong> Installing Docker on Mac</a></li><li class="chapter-item expanded "><a href="07.html"><strong aria-hidden="true">5.</strong> Verifying the Installation</a></li><li class="chapter-item expanded "><a href="08.html" class="active"><strong aria-hidden="true">6.</strong> Starting a Busybox</a></li><li class="chapter-item expanded "><a href="09.html"><strong aria-hidden="true">7.</strong> Running Commands Inside the Container</a></li><li class="chapter-item expanded "><a href="10.html"><strong aria-hidden="true">8.</strong> WebApps and Port Mapping</a></li><li class="chapter-item expanded "><a href="11.html"><strong aria-hidden="true">9.</strong> The Detached Mode</a></li><li class="chapter-item expanded "><a href="12.html"><strong aria-hidden="true">10.</strong> Accessing a Shell in Detached Mode</a></li><li class="chapter-item expanded "><a href="13.html"><strong aria-hidden="true">11.</strong> Passing Files to Containers</a></li><li class="chapter-item expanded "><a href="14.html"><strong aria-hidden="true">12.</strong> Stopping Containers, Deleting Images and Containers</a></li><li class="chapter-item expanded "><a href="15.html"><strong aria-hidden="true">13.</strong> Starting Containers Automatically</a></li><li class="chapter-item expanded "><a href="16.html"><strong aria-hidden="true">14.</strong> Viewing Statistics of Running Containers</a></li><li class="chapter-item expanded "><a href="17.html"><strong aria-hidden="true">15.</strong> Limiting Container Resources</a></li><li class="chapter-item expanded "><a href="18.html"><strong aria-hidden="true">16.</strong> Viewing Logs</a></li><li class="chapter-item expanded "><a href="19.html"><strong aria-hidden="true">17.</strong> Logging to a File</a></li><li class="chapter-item expanded "><a href="20.html"><strong aria-hidden="true">18.</strong> Dockerfiles</a></li><li class="chapter-item expanded "><a href="21.html"><strong aria-hidden="true">19.</strong> Building and Running Dockerfiles</a></li><li class="chapter-item expanded "><a href="22.html"><strong aria-hidden="true">20.</strong> Sharing Images on Docker Hub</a></li><li class="chapter-item expanded "><a href="23.html"><strong aria-hidden="true">21.</strong> Environment Variables</a></li><li class="chapter-item expanded "><a href="24.html"><strong aria-hidden="true">22.</strong> Python Deployment with Docker</a></li><li class="chapter-item expanded "><a href="25.html"><strong aria-hidden="true">23.</strong> Node.js Deployment with Docker</a></li><li class="chapter-item expanded "><a href="26.html"><strong aria-hidden="true">24.</strong> Email Server with MailCow</a></li><li class="chapter-item expanded "><a href="27.html"><strong aria-hidden="true">25.</strong> Personal Cloud with Nextcloud</a></li><li class="chapter-item expanded "><a href="28.html"><strong aria-hidden="true">26.</strong> More Options in Docker Compose Files</a></li><li class="chapter-item expanded "><a href="29.html"><strong aria-hidden="true">27.</strong> Swarms</a></li><li class="chapter-item expanded "><a href="30.html"><strong aria-hidden="true">28.</strong> Installing Docker Machine on Linux</a></li><li class="chapter-item expanded "><a href="31.html"><strong aria-hidden="true">29.</strong> Creating Local Virtual Machines</a></li><li class="chapter-item expanded "><a href="32.html"><strong aria-hidden="true">30.</strong> Additional Information about VMs</a></li><li class="chapter-item expanded "><a href="33.html"><strong aria-hidden="true">31.</strong> Creating a Swarm</a></li><li class="chapter-item expanded "><a href="34.html"><strong aria-hidden="true">32.</strong> Hosting an App in a Swarm</a></li><li class="chapter-item expanded "><a href="35.html"><strong aria-hidden="true">33.</strong> Stopping the Stack, Leaving the Swarm</a></li><li class="chapter-item expanded "><a href="36.html"><strong aria-hidden="true">34.</strong> Starting an Image Only on the Manager</a></li><li class="chapter-item expanded "><a href="37.html"><strong aria-hidden="true">35.</strong> Publishing a Single Service in the Cluster</a></li><li class="chapter-item expanded "><a href="38.html"><strong aria-hidden="true">36.</strong> Updating Services</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="starting-a-busybox-container"><a class="header" href="#starting-a-busybox-container">Starting a Busybox Container</a></h1>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p>In this tutorial, we will walk through the fundamental steps to create and manage a Docker container. Specifically, we will use a minimalistic image called "Busybox". This tutorial assumes that you have a basic understanding of Docker and its core concepts. We will cover pulling an image, running a container, and managing containers and images.</p>
+<h2 id="understanding-docker-images-and-containers"><a class="header" href="#understanding-docker-images-and-containers">Understanding Docker Images and Containers</a></h2>
+<h3 id="what-is-a-docker-image"><a class="header" href="#what-is-a-docker-image">What is a Docker Image?</a></h3>
+<p>A Docker image is a lightweight, stand-alone, executable package that includes everything needed to run a piece of software, including the code, runtime, libraries, and settings. Images are used to create containers.</p>
+<h3 id="what-is-a-docker-container"><a class="header" href="#what-is-a-docker-container">What is a Docker Container?</a></h3>
+<p>A Docker container is a runtime instance of an image. It contains the application and its dependencies but shares the kernel and system resources with other containers. Containers are isolated but lightweight.</p>
+<h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
+<p>Before we begin, ensure Docker is installed on your machine. If you're using Windows, you might not need to prepend commands with <code>sudo</code>.</p>
+<h2 id="step-by-step-guide"><a class="header" href="#step-by-step-guide">Step-by-Step Guide</a></h2>
+<h3 id="1-pulling-the-busybox-image"><a class="header" href="#1-pulling-the-busybox-image">1. Pulling the Busybox Image</a></h3>
+<p>First, you need to pull the Busybox image from Docker Hub. Docker Hub is a cloud-based registry service that allows you to link to code repositories, build your images, and test them.</p>
+<pre><code class="language-bash">sudo docker pull busybox
+</code></pre>
+<ul>
+<li><code>sudo</code>: Runs the command as an administrator.</li>
+<li><code>docker pull busybox</code>: Downloads the Busybox image from Docker Hub.</li>
+</ul>
+<h3 id="2-verifying-the-image"><a class="header" href="#2-verifying-the-image">2. Verifying the Image</a></h3>
+<p>After pulling the image, you can verify that it is available locally.</p>
+<pre><code class="language-bash">sudo docker images
+</code></pre>
+<p>This command lists all the Docker images available on your system. You should see Busybox listed among them.</p>
+<h3 id="3-running-a-busybox-container"><a class="header" href="#3-running-a-busybox-container">3. Running a Busybox Container</a></h3>
+<p>Now that you have the Busybox image, you can create and run a container from it.</p>
+<pre><code class="language-bash">sudo docker run busybox echo "Hello World"
+</code></pre>
+<ul>
+<li><code>docker run</code>: Runs a command in a new container.</li>
+<li><code>busybox</code>: Specifies the image to use.</li>
+<li><code>echo "Hello World"</code>: The command to run inside the container.</li>
+</ul>
+<h3 id="4-checking-running-containers"><a class="header" href="#4-checking-running-containers">4. Checking Running Containers</a></h3>
+<p>To see which containers are currently running:</p>
+<pre><code class="language-bash">sudo docker ps
+</code></pre>
+<p>This will list all the running containers. If your Busybox container has completed its task (printing "Hello World"), it may no longer be running.</p>
+<h3 id="5-listing-all-containers"><a class="header" href="#5-listing-all-containers">5. Listing All Containers</a></h3>
+<p>To list all containers, including those that have exited:</p>
+<pre><code class="language-bash">sudo docker ps -a
+</code></pre>
+<p>This command shows all containers, whether they are running or have stopped. You will see information such as container IDs, image names, command, creation time, status, ports, and names.</p>
+<h3 id="6-removing-containers"><a class="header" href="#6-removing-containers">6. Removing Containers</a></h3>
+<p>You can remove stopped containers to free up system resources.</p>
+<pre><code class="language-bash">sudo docker rm &lt;container_id&gt;
+</code></pre>
+<p>Replace <code>&lt;container_id&gt;</code> with the ID of the container you wish to remove. You can remove multiple containers by specifying multiple IDs.</p>
+<h3 id="7-batch-removing-containers"><a class="header" href="#7-batch-removing-containers">7. Batch Removing Containers</a></h3>
+<p>To remove all exited containers in one go, use the following command:</p>
+<pre><code class="language-bash">sudo docker rm $(sudo docker ps -a -q -f status=exited)
+</code></pre>
+<ul>
+<li><code>$(...)</code>: Executes the enclosed command and uses its output as arguments.</li>
+<li><code>docker ps -a -q -f status=exited</code>: Lists the IDs of all exited containers.</li>
+</ul>
+<h3 id="8-pruning-containers"><a class="header" href="#8-pruning-containers">8. Pruning Containers</a></h3>
+<p>Docker provides a convenient command to remove all stopped containers, dangling images, and unused networks:</p>
+<pre><code class="language-bash">sudo docker container prune
+</code></pre>
+<p>You will be prompted to confirm the action. This command helps to clean up your Docker environment.</p>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>In this tutorial, we covered the basic steps to pull an image, run a container, check container status, and manage containers in Docker. Busybox is a simple but powerful tool to get started with Docker container management. Mastering these fundamentals will prepare you for more advanced Docker operations.</p>
+<h3 id="example-code-snippets"><a class="header" href="#example-code-snippets">Example Code Snippets</a></h3>
+<h4 id="pulling-an-image"><a class="header" href="#pulling-an-image">Pulling an Image</a></h4>
+<pre><code class="language-bash">sudo docker pull busybox
+</code></pre>
+<h4 id="verifying-images"><a class="header" href="#verifying-images">Verifying Images</a></h4>
+<pre><code class="language-bash">sudo docker images
+</code></pre>
+<h4 id="running-a-container"><a class="header" href="#running-a-container">Running a Container</a></h4>
+<pre><code class="language-bash">sudo docker run busybox echo "Hello World"
+</code></pre>
+<h4 id="listing-running-containers"><a class="header" href="#listing-running-containers">Listing Running Containers</a></h4>
+<pre><code class="language-bash">sudo docker ps
+</code></pre>
+<h4 id="listing-all-containers"><a class="header" href="#listing-all-containers">Listing All Containers</a></h4>
+<pre><code class="language-bash">sudo docker ps -a
+</code></pre>
+<h4 id="removing-a-container"><a class="header" href="#removing-a-container">Removing a Container</a></h4>
+<pre><code class="language-bash">sudo docker rm &lt;container_id&gt;
+</code></pre>
+<h4 id="batch-removing-exited-containers"><a class="header" href="#batch-removing-exited-containers">Batch Removing Exited Containers</a></h4>
+<pre><code class="language-bash">sudo docker rm $(sudo docker ps -a -q -f status=exited)
+</code></pre>
+<h4 id="pruning-containers"><a class="header" href="#pruning-containers">Pruning Containers</a></h4>
+<pre><code class="language-bash">sudo docker container prune
+</code></pre>
+<p>By following these steps and commands, you will be able to effectively manage Docker containers and images, ensuring a clean and efficient development environment.</p>
+<p>BusyBox is a software suite that provides several Unix utilities in a single executable file. It is designed to be small and efficient, often used in embedded systems and environments where resources are limited. BusyBox combines tiny versions of many common UNIX utilities into a single small executable, providing a minimalist but functional environment.</p>
+<p>In the context of the tutorial above, BusyBox serves as a lightweight Docker image that you can use to practice basic Docker commands and container management. It is particularly useful for demonstrations and learning purposes because of its small size and simplicity. Here’s a deeper dive into what BusyBox is and its relevance in Docker:</p>
+<h3 id="understanding-busybox"><a class="header" href="#understanding-busybox">Understanding BusyBox</a></h3>
+<p><strong>Features of BusyBox:</strong></p>
+<ul>
+<li><strong>Compactness:</strong> BusyBox is designed to be small, making it ideal for systems with limited storage and memory.</li>
+<li><strong>Single Executable:</strong> It consolidates many common Unix utilities into one executable, simplifying deployment and usage.</li>
+<li><strong>Versatility:</strong> It includes a wide range of tools such as <code>sh</code> (shell), <code>ls</code> (list directory contents), <code>cp</code> (copy files), <code>mv</code> (move files), and many others.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li><strong>Embedded Systems:</strong> BusyBox is often used in embedded Linux systems where space is at a premium.</li>
+<li><strong>Rescue Systems:</strong> It is useful in rescue systems and live CDs due to its minimal footprint.</li>
+<li><strong>Containerization:</strong> In Docker, BusyBox serves as a minimal base image to quickly run commands and test Docker functionality without the overhead of a full operating system.</li>
+</ul>
+<h3 id="busybox-in-docker"><a class="header" href="#busybox-in-docker">BusyBox in Docker</a></h3>
+<p>When working with Docker, BusyBox can be used to understand and experiment with basic Docker concepts without worrying about the complexities of a larger base image. Here’s how BusyBox is typically used in Docker:</p>
+<ol>
+<li>
+<p><strong>Learning and Testing:</strong>
+BusyBox is ideal for learning Docker commands and testing container operations because it is simple and fast to download and run.</p>
+</li>
+<li>
+<p><strong>Minimal Base Image:</strong>
+For developers who need a minimal environment to run small utilities or scripts, BusyBox provides an efficient base image.</p>
+</li>
+<li>
+<p><strong>Container Management Practice:</strong>
+BusyBox allows users to practice container creation, execution, inspection, and deletion without the need for a more complex setup.</p>
+</li>
+</ol>
+<h3 id="practical-examples"><a class="header" href="#practical-examples">Practical Examples</a></h3>
+<p><strong>Pulling the BusyBox Image:</strong></p>
+<pre><code class="language-bash">sudo docker pull busybox
+</code></pre>
+<p>This command downloads the BusyBox image from Docker Hub. Docker Hub is a repository where Docker images are stored and shared.</p>
+<p><strong>Running a BusyBox Container:</strong></p>
+<pre><code class="language-bash">sudo docker run busybox echo "Hello World"
+</code></pre>
+<p>This command starts a new container from the BusyBox image and runs the <code>echo "Hello World"</code> command inside it. Since BusyBox is minimal, this command executes very quickly.</p>
+<p><strong>Listing Docker Images:</strong></p>
+<pre><code class="language-bash">sudo docker images
+</code></pre>
+<p>This command shows all Docker images available on your local system, including BusyBox.</p>
+<p><strong>Listing Containers:</strong></p>
+<pre><code class="language-bash">sudo docker ps -a
+</code></pre>
+<p>This command lists all containers, whether they are currently running or have exited. This is useful to see the history of your container operations.</p>
+<p><strong>Removing Containers:</strong></p>
+<pre><code class="language-bash">sudo docker rm &lt;container_id&gt;
+</code></pre>
+<p>Replace <code>&lt;container_id&gt;</code> with the actual ID of the container you wish to remove. This command deletes the specified container.</p>
+<p><strong>Pruning Containers:</strong></p>
+<pre><code class="language-bash">sudo docker container prune
+</code></pre>
+<p>This command removes all stopped containers, helping to clean up your Docker environment.</p>
+<h3 id="conclusion-1"><a class="header" href="#conclusion-1">Conclusion</a></h3>
+<p>BusyBox is a highly efficient and versatile tool, particularly useful in resource-constrained environments. In the Docker context, it serves as an excellent image for learning and experimentation due to its small size and simplicity. By practicing with BusyBox, users can gain a solid understanding of Docker's fundamental operations, which can then be applied to more complex images and containers.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="07.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="09.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="07.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="09.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

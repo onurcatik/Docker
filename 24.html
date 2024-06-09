@@ -1,0 +1,298 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Python Deployment with Docker</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="01.html"><strong aria-hidden="true">1.</strong> Why You Need Docker?</a></li><li class="chapter-item expanded "><a href="02.html"><strong aria-hidden="true">2.</strong> How Docker Works?</a></li><li class="chapter-item expanded "><a href="03.html"><strong aria-hidden="true">3.</strong> Installing Docker on Linux</a></li><li class="chapter-item expanded "><a href="04.html"><strong aria-hidden="true">4.</strong> Installing Docker on Mac</a></li><li class="chapter-item expanded "><a href="07.html"><strong aria-hidden="true">5.</strong> Verifying the Installation</a></li><li class="chapter-item expanded "><a href="08.html"><strong aria-hidden="true">6.</strong> Starting a Busybox</a></li><li class="chapter-item expanded "><a href="09.html"><strong aria-hidden="true">7.</strong> Running Commands Inside the Container</a></li><li class="chapter-item expanded "><a href="10.html"><strong aria-hidden="true">8.</strong> WebApps and Port Mapping</a></li><li class="chapter-item expanded "><a href="11.html"><strong aria-hidden="true">9.</strong> The Detached Mode</a></li><li class="chapter-item expanded "><a href="12.html"><strong aria-hidden="true">10.</strong> Accessing a Shell in Detached Mode</a></li><li class="chapter-item expanded "><a href="13.html"><strong aria-hidden="true">11.</strong> Passing Files to Containers</a></li><li class="chapter-item expanded "><a href="14.html"><strong aria-hidden="true">12.</strong> Stopping Containers, Deleting Images and Containers</a></li><li class="chapter-item expanded "><a href="15.html"><strong aria-hidden="true">13.</strong> Starting Containers Automatically</a></li><li class="chapter-item expanded "><a href="16.html"><strong aria-hidden="true">14.</strong> Viewing Statistics of Running Containers</a></li><li class="chapter-item expanded "><a href="17.html"><strong aria-hidden="true">15.</strong> Limiting Container Resources</a></li><li class="chapter-item expanded "><a href="18.html"><strong aria-hidden="true">16.</strong> Viewing Logs</a></li><li class="chapter-item expanded "><a href="19.html"><strong aria-hidden="true">17.</strong> Logging to a File</a></li><li class="chapter-item expanded "><a href="20.html"><strong aria-hidden="true">18.</strong> Dockerfiles</a></li><li class="chapter-item expanded "><a href="21.html"><strong aria-hidden="true">19.</strong> Building and Running Dockerfiles</a></li><li class="chapter-item expanded "><a href="22.html"><strong aria-hidden="true">20.</strong> Sharing Images on Docker Hub</a></li><li class="chapter-item expanded "><a href="23.html"><strong aria-hidden="true">21.</strong> Environment Variables</a></li><li class="chapter-item expanded "><a href="24.html" class="active"><strong aria-hidden="true">22.</strong> Python Deployment with Docker</a></li><li class="chapter-item expanded "><a href="25.html"><strong aria-hidden="true">23.</strong> Node.js Deployment with Docker</a></li><li class="chapter-item expanded "><a href="26.html"><strong aria-hidden="true">24.</strong> Email Server with MailCow</a></li><li class="chapter-item expanded "><a href="27.html"><strong aria-hidden="true">25.</strong> Personal Cloud with Nextcloud</a></li><li class="chapter-item expanded "><a href="28.html"><strong aria-hidden="true">26.</strong> More Options in Docker Compose Files</a></li><li class="chapter-item expanded "><a href="29.html"><strong aria-hidden="true">27.</strong> Swarms</a></li><li class="chapter-item expanded "><a href="30.html"><strong aria-hidden="true">28.</strong> Installing Docker Machine on Linux</a></li><li class="chapter-item expanded "><a href="31.html"><strong aria-hidden="true">29.</strong> Creating Local Virtual Machines</a></li><li class="chapter-item expanded "><a href="32.html"><strong aria-hidden="true">30.</strong> Additional Information about VMs</a></li><li class="chapter-item expanded "><a href="33.html"><strong aria-hidden="true">31.</strong> Creating a Swarm</a></li><li class="chapter-item expanded "><a href="34.html"><strong aria-hidden="true">32.</strong> Hosting an App in a Swarm</a></li><li class="chapter-item expanded "><a href="35.html"><strong aria-hidden="true">33.</strong> Stopping the Stack, Leaving the Swarm</a></li><li class="chapter-item expanded "><a href="36.html"><strong aria-hidden="true">34.</strong> Starting an Image Only on the Manager</a></li><li class="chapter-item expanded "><a href="37.html"><strong aria-hidden="true">35.</strong> Publishing a Single Service in the Cluster</a></li><li class="chapter-item expanded "><a href="38.html"><strong aria-hidden="true">36.</strong> Updating Services</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="deploying-python-with-docker"><a class="header" href="#deploying-python-with-docker">Deploying Python with Docker</a></h1>
+<p>This tutorial aims to provide a detailed guide on deploying Python applications using Docker, emphasizing the technical aspects and critical details necessary for a robust deployment process.</p>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p>In this tutorial, we will discuss how to deploy Python applications using Docker. We will cover various Docker images for Python, including different versions and variants, and provide a comprehensive guide to creating and using a Dockerfile tailored for Python applications.</p>
+<h2 id="understanding-docker-images-for-python"><a class="header" href="#understanding-docker-images-for-python">Understanding Docker Images for Python</a></h2>
+<p>Docker images are pre-configured environments that contain everything needed to run a particular application. For Python, there are several official Docker images available, each suited for different needs and use cases.</p>
+<h3 id="python-docker-images"><a class="header" href="#python-docker-images">Python Docker Images</a></h3>
+<p>The official Python Docker images are available on Docker Hub, a repository for Docker images. These images are maintained by the Python community and Docker, ensuring they are up-to-date and secure.</p>
+<p>Some common tags for Python Docker images include:</p>
+<ul>
+<li><code>python:3.7-slim</code></li>
+<li><code>python:3.8</code></li>
+<li><code>python:3.9-alpine</code></li>
+<li><code>python:3-stretch</code></li>
+</ul>
+<p>Each tag represents a different version or variant of the Python image. Understanding these tags is crucial for selecting the right image for your application.</p>
+<h3 id="tags-and-variants"><a class="header" href="#tags-and-variants">Tags and Variants</a></h3>
+<ul>
+<li><strong>Slim</strong>: A minimal image that includes only the essential packages required to run Python. This image is smaller in size, making it faster to download and start.</li>
+<li><strong>Stretch</strong>: Based on Debian Stretch, this image includes more packages than the slim version, providing a more complete environment.</li>
+<li><strong>Alpine</strong>: A very small image based on Alpine Linux, designed for minimal footprint and fast start-up times.</li>
+<li><strong>Windows Server Core</strong>: An image based on Windows Server, larger in size but necessary for Windows-based applications.</li>
+</ul>
+<h2 id="creating-a-dockerfile-for-a-python-application"><a class="header" href="#creating-a-dockerfile-for-a-python-application">Creating a Dockerfile for a Python Application</a></h2>
+<p>A Dockerfile is a text document that contains all the commands needed to assemble an image. Below is an example Dockerfile for a Python application:</p>
+<pre><code class="language-Dockerfile"># Use the official Python image from Docker Hub
+FROM python:3.7-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Make port 80 available to the world outside this container
+EXPOSE 80
+
+# Define environment variable
+ENV NAME World
+
+# Run app.py when the container launches
+CMD ["python", "app.py"]
+</code></pre>
+<h3 id="breakdown-of-the-dockerfile"><a class="header" href="#breakdown-of-the-dockerfile">Breakdown of the Dockerfile</a></h3>
+<ol>
+<li><strong>FROM python:3.7-slim</strong>: This line specifies the base image. Here, we use the <code>python:3.7-slim</code> image, which is a lightweight version of Python 3.7.</li>
+<li><strong>WORKDIR /app</strong>: Sets the working directory in the container to <code>/app</code>.</li>
+<li><strong>COPY . /app</strong>: Copies the contents of the current directory on the host machine to the <code>/app</code> directory in the container.</li>
+<li><strong>RUN pip install --no-cache-dir -r requirements.txt</strong>: Installs the Python dependencies listed in the <code>requirements.txt</code> file.</li>
+<li><strong>EXPOSE 80</strong>: Opens port 80 to allow external access to the container.</li>
+<li><strong>ENV NAME World</strong>: Sets an environment variable <code>NAME</code> with the value <code>World</code>.</li>
+<li><strong>CMD ["python", "app.py"]</strong>: Specifies the command to run the application, which in this case is <code>python app.py</code>.</li>
+</ol>
+<h2 id="building-and-running-the-docker-container"><a class="header" href="#building-and-running-the-docker-container">Building and Running the Docker Container</a></h2>
+<p>To build and run the Docker container, follow these steps:</p>
+<h3 id="building-the-image"><a class="header" href="#building-the-image">Building the Image</a></h3>
+<p>Navigate to the directory containing your Dockerfile and run the following command:</p>
+<pre><code class="language-sh">docker build -t my-python-app .
+</code></pre>
+<p>This command builds the Docker image and tags it as <code>my-python-app</code>.</p>
+<h3 id="running-the-container"><a class="header" href="#running-the-container">Running the Container</a></h3>
+<p>Once the image is built, you can run the container with the following command:</p>
+<pre><code class="language-sh">docker run -p 4000:80 my-python-app
+</code></pre>
+<p>This command runs the container, mapping port 4000 on your host to port 80 in the container.</p>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>Deploying Python applications with Docker provides a consistent and portable environment, making it easier to manage dependencies and configurations. By understanding the different Docker images and how to create a Dockerfile, you can effectively containerize your Python applications.</p>
+<p>This tutorial covered the essentials of using Docker with Python, including choosing the right image, writing a Dockerfile, and building and running your container. For more advanced use cases, consider exploring Docker Compose and Kubernetes for orchestrating multi-container applications and managing deployments at scale.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="23.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="25.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="23.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="25.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
